@@ -1,0 +1,15 @@
+version: '2'
+services:
+  jenkins:
+    container_name: "jenkins-dood"
+    build:
+      context: ./
+      args:
+        - DOCKER_GROUP_ID=${DOCKER_GROUP_ID}
+    env_file: .env
+    ports:
+      - 20080:8080
+    volumes:
+      - ./jenkins-data:/var/jenkins_home
+      # ホストのdocker.sockをマウント
+      - /var/run/docker.sock:/var/run/docker.sock
