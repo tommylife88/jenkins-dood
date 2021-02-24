@@ -5,13 +5,11 @@ services:
     build:
       context: ./
       args:
-        - DOCKER_GROUP_ID=${DOCKER_GROUP_ID}
-    env_file: .env
+        - DOCKER_GROUP_ID_HOST=${DOCKER_GROUP_ID}
     environment:
       - JAVA_OPTS=-Duser.timezone=Asia/Tokyo -Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8
     ports:
-      - 20080:8080
+      - 8080:8080
     volumes:
       - ./jenkins-data:/var/jenkins_home
-      # ホストのdocker.sockをマウント
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock # mount docker.sock on host
